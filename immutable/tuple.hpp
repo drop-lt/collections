@@ -1,12 +1,10 @@
-#ifndef Tuple_class
-#define Tuple_class
-#include <iostream>
+#ifndef Tupleclass
+#define Tupleclass
 
 #define arrLen(a) (sizeof(a) / sizeof(a[0]))
 #include <stdarg.h> 
 #include <string>
 #include <vector>
-//#include <errno.h>
 using namespace std;
 namespace immutables{
     template<class T>class Tuple{

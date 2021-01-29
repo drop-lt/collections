@@ -3,9 +3,7 @@
 
 #define arrLen(a) (sizeof(a) / sizeof(a[0]))
 #include <stdarg.h> 
-#include <string>
 #include <vector>
-//#include <errno.h>
 using namespace std;
 namespace immutables{
     template<class T>class Tuple{
@@ -84,11 +82,5 @@ namespace immutables{
         }
     };
 }
-using namespace immutables;
 
-int main(){
-    Tuple<int> a = Tuple<int>(7, 1,2,3,4,5,7,6);
-    Tuple<int> b = Tuple<int>(6, 1,2,3,4,5,6);
-    cout << a.repr() << endl;
-    cout << (a != b) << endl;
-}
+

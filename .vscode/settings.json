@@ -5,6 +5,9 @@
         "string": "cpp",
         "iostream": "cpp",
         "vector": "cpp",
-        "xutility": "cpp"
+        "xutility": "cpp",
+        "istream": "cpp",
+        "ostream": "cpp",
+        "ios": "cpp"
     }
 }
