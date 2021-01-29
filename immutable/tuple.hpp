@@ -1,4 +1,5 @@
-
+#ifndef Tuple_class
+#define Tuple_class
 #include <iostream>
 
 #define arrLen(a) (sizeof(a) / sizeof(a[0]))
@@ -39,6 +40,7 @@ namespace immutables{
                     result += val;
                 }*/
                 result += to_string(values.at(i));
+                
                 if (index != values.size()){
                     result += ", ";
                 } 
@@ -84,11 +86,4 @@ namespace immutables{
         }
     };
 }
-using namespace immutables;
-
-int main(){
-    Tuple<int> a = Tuple<int>(7, 1,2,3,4,5,7,6);
-    Tuple<int> b = Tuple<int>(6, 1,2,3,4,5,6);
-    cout << a.repr() << endl;
-    cout << (a != b) << endl;
-}
+#endif
