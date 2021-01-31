@@ -1,6 +1,7 @@
 #include <vector>
 #include <string>
 #include <iostream>
+#include <utility>
 using namespace std;
 
 template < typename T>
@@ -25,6 +26,7 @@ template <class keys, class values>class Dict{
             this->_keys = kys;
             this->_values = vlues;
         }
+        
         friend std::ostream & operator << (std::ostream &out, const Dict &obj) {
             string rep = "{";
             for (int i = 0; i < obj._keys.size(); i++){
@@ -59,6 +61,7 @@ template <class keys, class values>class Dict{
             }            
             return this->_values.at(0);  
         }
+        
         string repr(){
             string rep = "{";
             for (int i = 0; i < this->_keys.size(); i++){
@@ -82,6 +85,68 @@ template <class keys, class values>class Dict{
             rep += "}";
             return rep;
         }
+        
+        void clear(){
+            this->_keys.clear();
+            this->_values.clear();
+        }
+        
+        Dict<keys, values> copy(){
+            return Dict<keys, values>(this->_keys, this->_values);
+        }
+        
+        vector<pair<keys,values>> items(){
+            vector<pair<keys,values>> items;
+            for(keys key : this->_keys){
+                auto j = getIndex(this->_keys, key);
+                values val = this->_values.at(j); 
+                pair<keys, values> combination(key, val);
+                items.push_back(combination);
+            }
+            return items;
+        }
+
+        vector<keys> gkeys(){
+            return this->_keys;
+        }
+
+        vector<values> gvalues(){
+            return this->_values;
+        }
+
+        void pop(keys key){
+            
+            /*
+            int j = getIndex(this->_keys, key);
+            if (!(j < 0)){
+                this->_values.at(j) = 
+            }
+            */
+        }
+
+        void update(pair<keys, values> value){
+            if(getIndex<keys>(this->_keys, value.first) == -1){
+                this->_keys.push_back(value.first);
+                this->_values.push_back(value.second);
+            } else {
+                auto j = getIndex(this->_keys, value.first);
+                if (!(j < 0)){
+                    this->_values.at(j) = value.second; 
+                }
+            }
+        }
+
+        void update(keys key, values value){
+            if(getIndex<keys>(this->_keys, key) == -1){
+                this->_keys.push_back(key);
+                this->_values.push_back(value);
+            } else {
+                auto j = getIndex(this->_keys, key);
+                if (!(j < 0)){
+                    this->_values.at(j) = value; 
+                }
+            }
+        }
 };
 
 
@@ -92,5 +157,11 @@ int main(){
     Dict<char, int> aaa = Dict<char, int>(keys, values);
     cout << aaa << endl;
     cout << aaa['c'] << endl;
+    pair<char, int> test;
+    test.first = 'g';
+    test.second = 4;
+    aaa.update('l', 8);
+    aaa.items();
+    cout << endl;
     return 0;
 }
