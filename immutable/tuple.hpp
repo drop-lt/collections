@@ -59,26 +59,38 @@ namespace immutables{
             return values.at(0);     
         }
 
+        int indexOf(T value){
+            for(int i = 0; i < elements.size(); i++){
+                if (elements.at(i) == value){
+                    return i;
+                }
+            }
+            return -1;
+        }
+        int countValue(T value){
+            int count = 0;
+            for (int i = 0; i < elements.size(); i++){
+                if (value == elements.at(i)){
+                    count++;
+                }
+            }
+            return count;
+        }
         bool operator <(const Tuple& tup){
             return this->values.size() < tup.values.size();
         }
-
         bool operator >(const Tuple& tup){
             return this->values.size() > tup.values.size();
         }
-
         bool operator <=(const Tuple& tup){
             return this->values.size() <= tup.values.size();
         }
-
         bool operator >=(const Tuple& tup){
             return this->values.size() >= tup.values.size();
         }
-
         bool operator ==(const Tuple& tup){
             return this->values.size() == tup.values.size();
         }
-
         bool operator !=(const Tuple& tup){
             return this->values.size() != tup.values.size();
         }

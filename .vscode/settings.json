@@ -8,6 +8,12 @@
         "xutility": "cpp",
         "istream": "cpp",
         "ostream": "cpp",
-        "ios": "cpp"
+        "ios": "cpp",
+        "initializer_list": "cpp",
+        "type_traits": "cpp",
+        "memory": "cpp",
+        "system_error": "cpp",
+        "xmemory": "cpp",
+        "xstddef": "cpp"
     }
 }
