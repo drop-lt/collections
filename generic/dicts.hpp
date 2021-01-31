@@ -1,3 +1,6 @@
+#ifndef _collections_dict
+#define _collections_dict
+
 #include <vector>
 #include <string>
 #include <iostream>
@@ -144,3 +147,5 @@ template <class keys, class values>class Dict{
         }
 };
 }
+
+#endif
