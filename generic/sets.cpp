@@ -1,7 +1,6 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-namespace collections{
 template < typename T> int getIndex(const vector<T> vecOfElements, const T element)
 {
     int result = 0;
@@ -30,6 +29,27 @@ template < typename T> int getIndex(const vector<T> vecOfElements, const T eleme
                 }
             }
             
+            void add(Set<T> set){
+                this->elements.insert(end(this->elements), begin(set.elements), end(set.elements));
+            }
+            
+            void remove(Set<T> set){
+                
+                int size = this->elements.size();
+                cout << size;
+                for( int i = 0; i < size; i++){
+                    cout << "noice" << endl;
+                    cout << (i) << endl;
+                    if (getIndex<T>(this->elements, set.elements[i]) != -1){
+                        this->elements.erase((i));
+                    }
+                }
+            }
+
+            Set<T> copy(){
+                return Set<T>(this->elements);
+            }
+        
             bool same(Set<T> set){
                 if(set.elements == this->elements){
                     return true;
@@ -74,7 +94,19 @@ template < typename T> int getIndex(const vector<T> vecOfElements, const T eleme
                 return false;
             }
 
-            Set<T>
+            Set<T> difference(Set<T> set){
+                cout << "noice" << endl;
+                Set<T> intersec = this->intersection(set);
+                Set<T> thiscopy = this->copy();
+                Set<T> thatcopy = set.copy();
+                cout << "noice" << endl;
+                thiscopy.remove(intersec);
+                thatcopy.remove(intersec);
+                
+                thiscopy.add(thatcopy);
+                
+                return thiscopy;
+            }
 
             string repr(){
                 string rep = "<(";
@@ -97,12 +129,12 @@ template < typename T> int getIndex(const vector<T> vecOfElements, const T eleme
                 return rep;
             }
     };
-}
-using namespace collections;
 int main(){
-    vector<int> io = {1,2,153,4,5,6,7,8,9};
-    vector<int> oi = {1,2,3, 8,4,5,6,654,0, 78};
+    vector<int> io = {1,2,3,4,5,6,7,8,9};
+    vector<int> oi = {1,2,3,4};
     Set<int> myset = Set<int>(io);
     Set<int> test2 = Set<int>(oi);
-    cout << myset.intersection(test2).repr() << endl;
+    myset.remove(test2);
+    cout << myset.repr() << endl;
+    return 0;
 }
