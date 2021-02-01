@@ -3,9 +3,9 @@
 
 for now:
 
-* tuples (almost done)
-* lists (very buggy)
+* tuples
+* lists
+* dicts
+* sets (just the base idea of non repeating items)
 
-
-#what are tuples?
-they are non-mutable collections, so if you make one, there is no way to modify it later
+any suggestion is welcome

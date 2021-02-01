@@ -12,28 +12,7 @@ template <class T> class List{
     private:
         vector<T> elements;
     public:
-        
-        List(T val){
-            elements.push_back(val);
-        }
-        List(vector<T> val){
-            elements = val;
-        }
-        List(int n, ...){
 
-            T val;
-            va_list vl;
-            va_start(vl,n);
-            for (int i = 0; i < n; i++){
-                if (is_integral_v<T> || is_floating_point_v<T>){
-                    val=va_arg(vl,T);
-                } else{
-                    val=va_arg(vl,int);
-                }
-                
-                elements.push_back(val);
-            }
-        }
         friend std::ostream & operator << (std::ostream &out, const List &obj) {
             string result = "[";
             int index = 0;
@@ -56,6 +35,7 @@ template <class T> class List{
             out << result;
             return out;
         }
+        
         string repr(){
             string result = "[";
             int index = 0;
@@ -77,6 +57,7 @@ template <class T> class List{
             result += "]";
             return result;
         }
+        
         T &operator[](int i) {
             if( i < 0 ) {
                 return this->elements.at((this->elements.size() + i));
@@ -85,6 +66,7 @@ template <class T> class List{
             } 
             return elements.at(0);     
         }        
+        
         int len(){
             return this->elements.size();
         }
@@ -175,11 +157,57 @@ template <class T> class List{
             return false;
         }
         
+        bool operator <(const List& list){
+            return this->elements.size() < list.elements.size();
+        }
+        
+        bool operator >(const List& list){
+            return this->elements.size() > list.elements.size();
+        }
+        
+        bool operator <=(const List& list){
+            return this->elements.size() <= list.elements.size();
+        }
+        
+        bool operator >=(const List& list){
+            return this->elements.size() >= list.elements.size();
+        }
+
+        bool operator ==(const List& list){
+            return this->elements.size() == list.elements.size();
+        }
+        
+        bool operator !=(const List& list){
+            return this->elements.size() != list.elements.size();
+        }
+
+
+        void operator +=(const List& list){
+            this->elements.push_back
+        }
+        
+        void operator =(const T values[]){
+            for (T value : values)
+            {
+                this->elements.push_back(value);
+            }
+            
+        }
+        void operator =(const T& value){
+            this->elements.push_back(value);
+        }
+        void operator =(const vector<T> elemented){
+            this->elements = elemented
+        }
+        void operator =(const List& list){
+            this->elements = list.elements;
+        }
 };
 int main(){
-    vector<char> test = {'a', 'b', 'f'};
-    List<float> cc = List<float>(3, 1.2, 1.5, 1.5);
-    cout << cc.has('c') << endl;
-    cout << cc[1] << endl;
+    //List<float> cc = List<float>(3, 1.2, 1.5, 1.5);
+    List<int> dd = {1,2,3,4,5,6,7};
+    cout << dd << endl;
+    //cout << cc.has('c') << endl;
+    //cout << cc[1] << endl;
     return 0;
 }

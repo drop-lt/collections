@@ -7,6 +7,14 @@
 #include <vector>
 using namespace std;
 namespace immutables{
+    
+#include <iostream>
+
+#define arrLen(a) (sizeof(a) / sizeof(a[0]))
+#include <stdarg.h> 
+#include <vector>
+using namespace std;
+namespace immutables{
     template<class T>class Tuple{
         private:
             vector<T> values;
@@ -38,7 +46,6 @@ namespace immutables{
                     result += val;
                 }*/
                 result += to_string(values.at(i));
-                
                 if (index != values.size()){
                     result += ", ";
                 } 
@@ -50,6 +57,26 @@ namespace immutables{
         int len(){
             return this->values.size();
         }
+
+        int index(T value){
+            for(int i = 0; i < elements.size(); i++){
+                if (elements.at(i) == value){
+                    return i;
+                }
+            }
+            return -1;
+        }
+
+        int count(T value){
+            int count = 0;
+            for (int i = 0; i < elements.size(); i++){
+                if (value == elements.at(i)){
+                    count++;
+                }
+            }
+            return count;
+        }
+        
         T &operator[](int i) {
             if( i < 0 ) {
                 return this->values.at((this->values.size() + i));
@@ -59,41 +86,33 @@ namespace immutables{
             return values.at(0);     
         }
 
-        int indexOf(T value){
-            for(int i = 0; i < elements.size(); i++){
-                if (elements.at(i) == value){
-                    return i;
-                }
-            }
-            return -1;
-        }
-        int countValue(T value){
-            int count = 0;
-            for (int i = 0; i < elements.size(); i++){
-                if (value == elements.at(i)){
-                    count++;
-                }
-            }
-            return count;
-        }
         bool operator <(const Tuple& tup){
             return this->values.size() < tup.values.size();
         }
+
         bool operator >(const Tuple& tup){
             return this->values.size() > tup.values.size();
         }
+
         bool operator <=(const Tuple& tup){
             return this->values.size() <= tup.values.size();
         }
+
         bool operator >=(const Tuple& tup){
             return this->values.size() >= tup.values.size();
         }
+
         bool operator ==(const Tuple& tup){
             return this->values.size() == tup.values.size();
         }
+
         bool operator !=(const Tuple& tup){
             return this->values.size() != tup.values.size();
         }
     };
+}
+
+
+
 }
 #endif
