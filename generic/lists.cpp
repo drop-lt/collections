@@ -183,7 +183,7 @@ template <class T> class List{
 
 
         void operator +=(const List& list){
-            this->elements.push_back
+            this->elements.push_back;
         }
         
         void operator =(const T values[]){
@@ -197,7 +197,7 @@ template <class T> class List{
             this->elements.push_back(value);
         }
         void operator =(const vector<T> elemented){
-            this->elements = elemented
+            this->elements = elemented;
         }
         void operator =(const List& list){
             this->elements = list.elements;
@@ -205,7 +205,7 @@ template <class T> class List{
 };
 int main(){
     //List<float> cc = List<float>(3, 1.2, 1.5, 1.5);
-    List<int> dd = {1,2,3,4,5,6,7};
+    List<int> dd;
     cout << dd << endl;
     //cout << cc.has('c') << endl;
     //cout << cc[1] << endl;
